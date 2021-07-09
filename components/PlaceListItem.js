@@ -1,11 +1,15 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 export default class PlaceListItem extends React.Component {
     render () {
         const item = this.props.item
-        console.log(item)
         return (
             <View style={styles.item}>
+
+            <Image
+            style={{width: 50, height: 50}}
+            source={{uri:item.geojetourMainImg}}/>
+
                 <Text
                     style={styles.itemTitle}
                     numberOfLines={3}
@@ -18,9 +22,9 @@ export default class PlaceListItem extends React.Component {
                     numberOfLines={2}
                     ellipsizeMode={'tail'}
                 >
-                    { item.geojetourNm }
+                    { item.geojetourAddr }
                 </Text>
-                <Text style={styles.itemDate}>{ item.geojetourNm }</Text>
+                <Text style={styles.itemDate}>{ item.geojetourCdNm }</Text>
             </View>
         )
     }
