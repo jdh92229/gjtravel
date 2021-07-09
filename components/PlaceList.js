@@ -1,29 +1,27 @@
 import React from 'react'
-import PlaceListItem from './PlaceListItem'
 import { Text, View, FlatList } from 'react-native'
-
-export default class PlaceList extends React.Component {
+import PlaceListItem from './PlaceListItem'
+export default class PlacesList extends React.Component {
     state = {
-        lists: []
+        items: []
     }
     async componentDidMount () {
         const feed = await this.props.fetchEntry()
-        const lists = feed.list
-        console.log("테스트")
-        console.log(lists)
-        this.setState({ lists })
+        const items = feed.list
+        // console.log(items)
+        this.setState({ items })
     }
-    _keyExtractor = (list, index) => list.link
-    _renderItem = ({ list }) => (
-        <PlaceListItem list={list} />
+    _keyExtractor = (item, index) => item.link
+    _renderItem = ({ item }) => (
+        <PlaceListItem item={item} />
     )
     render () {
         return (
             <FlatList
-                data={this.state.lists}
-                extraData={this.state.lists}
+                data={this.state.items}
+                extraData={this.state.items}
                 keyExtractor={this._keyExtractor}
-                renderList={this._renderItem}
+                renderItem={this._renderItem}
             />
         )
     }
